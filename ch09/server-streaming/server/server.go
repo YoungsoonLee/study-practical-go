@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	svc "github.com/YoungsoonLee/practical-go/ch09/server-streaming/service"
+	"google.golang.org/grpc"
 )
 
 type userService struct {

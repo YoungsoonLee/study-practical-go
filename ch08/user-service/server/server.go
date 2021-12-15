@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	"log"
 	"net"
 	"os"
@@ -10,6 +9,7 @@ import (
 
 	users "github.com/YoungsoonLee/practical-go/ch08/user-service/service"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/status"
 )
 
 type userService struct {
@@ -25,7 +25,8 @@ func (s *userService) GetUser(ctx context.Context, in *users.UserGetRequest) (*u
 
 	components := strings.Split(in.Email, "@")
 	if len(components) != 2 {
-		return nil, errors.New("invalid email address")
+		//return nil, errors.New("invalid email address")
+		return nil, status.Error(codes.invalidArgument, "invalid email address")
 	}
 
 	u := users.User{
